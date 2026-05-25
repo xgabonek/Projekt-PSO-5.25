@@ -1,6 +1,7 @@
 # Robienie pieknej aklipacji w PyQt6 oczywiscie na sluchawkach DJ peirdolony rak watroby
+from PyQt6.QtGui import QPixmap, QFont
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QMainWindow
+from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QMainWindow, QLabel
 import sys
 
 def main_menu():
@@ -10,14 +11,24 @@ def main_menu():
             super().__init__() # super() bylo po to zeby dziedziczona klasa mogla korzystac z funkcji rodzica
 
             # Tutaj ustawienia okienka elegancko pykpykpyk wszystko wsm to straight forward
-            self.setWindowTitle("Okienko")
-            dupa1 = QPushButton("dupa1", self)
-            self.setFixedSize(QSize(700, 400))
-            dupa1.resize(200, 50)
-            dupa1.move(250, 100)
-            dupa2 = QPushButton("dupa2", self)
-            dupa2.resize(200, 50)
-            dupa2.move(250, 175)
+            self.setWindowTitle("Diablo II")
+            tytul = QLabel(self)
+            tytul_img = QPixmap('diablo_logo.png')
+            tytul.setPixmap(tytul_img)
+            tytul.resize(750, 150)
+            tytul.move(585, 75)
+            tytul.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            single = QPushButton(self)
+            single = QLabel(self)
+            single_img = QPixmap('singplayer_button.png')
+            single.setPixmap(single_img)
+            single.resize(500, 75)
+            single.move(710, 350)
+            multi = QLabel(self)
+            multi.resize(500, 75)
+            multi.move(710, 425)
+
+            self.showFullScreen()
 
     app = QApplication(sys.argv)
 
