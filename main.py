@@ -1,4 +1,6 @@
-from PyQt6.QtGui import QPixmap
+# Sluchanie mommy asmr o 1 w nocy gotujac to - Peak zycia
+
+from PyQt6.QtGui import QPixmap, QFont, QFontDatabase
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget
 import sys
@@ -8,7 +10,7 @@ def main_menu():
         def __init__(self):
             super().__init__()
             self.setWindowTitle("Diablo II")
-            self.setStyleSheet("background-color: #222; color: white;")
+            self.setStyleSheet("background-image: url('tlo_menu.jpg'); color: white;")
 
             # QMainWindow wymaga centralnego widgetu cosik jak taki container
             centralny = QWidget()
@@ -21,10 +23,13 @@ def main_menu():
             tytul = QLabel()
             tytul_img = QPixmap('diablo_logo.png')
             tytul.setPixmap(tytul_img)
+            tytul.setStyleSheet("background: none;")
             tytul.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
             # Przyciski
             btn_style = "background-color: #333; padding: 20px; font-size: 18px;"
+            font_id = QFontDatabase.addApplicationFont("Outfit-bold.ttf")
+            families = QFontDatabase.applicationFontFamilies(font_id)
 
             single = QPushButton("Singleplayer")
             single.setStyleSheet(btn_style)
@@ -33,6 +38,9 @@ def main_menu():
             multi = QPushButton("Multiplayer")
             multi.setStyleSheet(btn_style)
             multi.setFixedWidth(500)
+
+            single.setFont(QFont(families[0], 24))
+            multi.setFont(QFont(families[0], 24))
 
             # The layout of doom and despair
             layout.addStretch()
